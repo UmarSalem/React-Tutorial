@@ -1,27 +1,23 @@
-import {useState} from 'react';
-import './App.css';
+import { useState } from "react";
+import Student from "./Student";
 
-function App() {
-// let data, setData="umar";
-const [data,setData]=useState("Umar");
-const [number, setNum]=useState (0)
- function UpdateData() 
-{
-setData("Ibrahim Saleem");
-setNum(number+1)
-// alert(data,number)
+
+function App () {
+  const [name,setName]=useState ("Umar Saleem");
+  function apple()
+  {
+    alert("hello")
+  }
+return (
+  <div className="App">
+<h1>Props in React :) </h1>
+  <Student name={name} />
+  <button onClick={()=>setName("Ibrahim Saleem")}>Update</button>
+
+{/* <Student name={"umar"} email="umar@gmail.com" others={{address:"Horsens", mobile:"343235"}}/>
+<Student name ={"Ali"} email="ali@gmail.com" others={{address:"Copenhagen",mobile:"8766987"}}/> */}
+
+  </div>
+);
 }
-console.warn("Data:"+{data}+"Number:"+number);
-
-
-  return (
-
-<div className='App'>
-<h1>State in React</h1>
-<h2>Data:{data}</h2>
-<h3>Number Of Time State Update/Counter:{number}</h3>
-<button onClick={UpdateData}>Update data</button>
-</div>
-  );
-}
- export default App;
+export default App;
