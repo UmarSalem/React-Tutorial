@@ -1,23 +1,28 @@
 import { useState } from "react";
-import Student from "./Student";
 
 
-function App () {
-  const [name,setName]=useState ("Umar Saleem");
-  function apple()
+function App(){
+const [data,setData] =useState (null)
+const [print,setPrint]=useState(false)
+  function getData (val)
   {
-    alert("hello")
+    console.log(val.target.value)
+    setData(val.target.value)
+    setPrint(false)
   }
-return (
-  <div className="App">
-<h1>Props in React :) </h1>
-  <Student name={name} />
-  <button onClick={()=>setName("Ibrahim Saleem")}>Update</button>
-
-{/* <Student name={"umar"} email="umar@gmail.com" others={{address:"Horsens", mobile:"343235"}}/>
-<Student name ={"Ali"} email="ali@gmail.com" others={{address:"Copenhagen",mobile:"8766987"}}/> */}
-
-  </div>
-);
+  return (
+    <div className="App">
+      {
+        print?
+        <h1>{data}</h1>
+        :null
+      }
+      <h1>Hello World, Here is my Data you enter + {data}</h1>
+      <input type="text" onChange={getData}/>
+      <div>
+      <button onClick={()=>setPrint(true)}>Print Data</button>
+      </div>
+            </div>
+  );
 }
 export default App;
