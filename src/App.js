@@ -1,28 +1,31 @@
 import { useState } from "react";
 
-
-function App(){
-const [data,setData] =useState (null)
-const [print,setPrint]=useState(false)
-  function getData (val)
+function App()
   {
-    console.log(val.target.value)
-    setData(val.target.value)
-    setPrint(false)
+    const [name,setName]=useState("");
+    const [tnc,setTnc]=useState(false);
+    const [interest, setInterest]=useState("");
+    function getFormData (e)
+    {
+      console.warn(name,tnc,interest)
+      e.preventDefault()
+    }
+    return (
+<div className="App">
+  <h1>Handle form in the React</h1>
+  <form onSubmit={getFormData}>
+    <input type="text" placeholder="enter name" value={name} onChange={(e)=>setName(e.target.value)}/> <br /><br />
+<select onChange={(e)=>setInterest(e.target.value)}>
+<option>Select option</option>
+<option>Chishtian</option>
+<option>Horsens</option>
+</select><br/><br/>
+<input type="checkbox" onChange={(e)=>setTnc(e.target.checked)}/> <span> Accept Term and conditions</span>
+<br/><br/>
+<button type="submit">Submit</button>
+<button>Clear</button>
+  </form>
+</div>
+    )
   }
-  return (
-    <div className="App">
-      {
-        print?
-        <h1>{data}</h1>
-        :null
-      }
-      <h1>Hello World, Here is my Data you enter + {data}</h1>
-      <input type="text" onChange={getData}/>
-      <div>
-      <button onClick={()=>setPrint(true)}>Print Data</button>
-      </div>
-            </div>
-  );
-}
-export default App;
+  export default App;
