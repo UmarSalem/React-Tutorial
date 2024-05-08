@@ -1,20 +1,27 @@
+import {useState} from 'react';
 import './App.css';
 
 function App() {
- /*  function apple(){
-   alert("Haha you are funny") 
-  } */
-  let data="umar saleem"
-  
-  return(
-    <div className='App'>
-{/* <h1>Hello World</h1> */}
+// let data, setData="umar";
+const [data,setData]=useState("Umar");
+const [number, setNum]=useState (0)
+ function UpdateData() 
+{
+setData("Ibrahim Saleem");
+setNum(number+1)
+// alert(data,number)
+}
+console.warn("Data:"+{data}+"Number:"+number);
 
-<h1>{data}</h1>
-<button onClick={()=>alert("Ibrahim Saleem")}>Click me</button>
-{/* <button onClick={apple}>Click me</button> */}
-    </div>
 
+  return (
+
+<div className='App'>
+<h1>State in React</h1>
+<h2>Data:{data}</h2>
+<h3>Number Of Time State Update/Counter:{number}</h3>
+<button onClick={UpdateData}>Update data</button>
+</div>
   );
 }
-export default App
+ export default App;
