@@ -1,38 +1,37 @@
-
 import './App.css';
-import React from "react";
-import{Table} from 'react-bootstrap'
+import React,{useEffect,useState} from 'react';
+function App (){
+  const [name,setName]=useState("");
+  const [email,setEmail]=useState("");
+  const[mobile,setMobile]=useState("");
 
-function App(){
-const user = [
-  {name:'umar', email:'umar@gmail.com', mobile:'343434'},
-  {name:'usman', email:'usman@gmail.com', mobile:'454545'},
-  {name:'Ali', email:'ali@gmail.com', mobile:'232323'},
-  {name:'Ibrahim', email:'ibrahim@gmail.com', mobile:'565656'},
-]
+  function saveData()
+{
+  let data={name,email,mobile}
+// console.warn(data);
+  fetch("http://localhost:4000/todo", {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body:JSON.stringify(data)
+  }).then((resp)=>{
+    // console.warn("resp",resp);;
+    resp.json().then((result)=>{
+      console.warn("result",result)
+    })
+  })
+}
+
+
   return (
-    <div className="App">
-      <h1>List with Booststrap Table</h1>
-      <Table striped variant="dark">
-        <tbody>
-          <tr>
-          <td>Name</td>  
-          <td>Email</td>
-          <td>Mobile</td>
-          </tr>
-          {
-            user.map((item,i)=>
-            // item.mobile==='111222'?
-            <tr key={i}>
-              <td>{item.name}</td>
-              <td>{item.email}</td>
-              <td>{item.mobile}</td>
-              </tr>
-          /* </tr>:null */
-            )
-          }
-        </tbody>
-      </Table>
+    <div className='App'>
+      <h1>Post Api Example</h1>
+      <input type='text' name="name" value={name} onChange={(e)=>{setName(e.target.value)}} /> <br/><br/>
+      <input type="text" name="email"  value={email} onChange={(e)=>{setEmail(e.target.value)}} /> <br /> <br />
+      <input type="text" name="mobile"  value={mobile} onChange={(e)=>{setMobile(e.target.value)}}/> <br /> <br />
+      <button type="button" onClick={saveData} >Save New User</button>
     </div>
   );
 }
