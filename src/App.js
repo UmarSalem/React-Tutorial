@@ -1,19 +1,16 @@
 import './App.css';
-import React,{useState,useEffect } from 'react';
-
-function App (){
-  const [count,setCount]=useState(0);
-useEffect(()=>{console.warn("use effect")})
-
-
-  
-
+import React,{useState} from 'react'
+import User from './User'
+function App() {
+  const [data,setData]=useState(10)
+  const [count,setCount]=useState(100)
   return (
-    <div className='App'>
-      <h1>Use Effect in React</h1>
-      <h2>{count}</h2>
-          <button type="button" onClick={()=>{setCount(count+1)}} >Update Counter</button>
-         </div>
+    <div className="App">
+      <User count={count} data={data} />
+      <button onClick={()=>setCount(count+1)} >Update Count</button>
+      <button onClick={()=>setData(data+1)} >Update Data</button>
+    </div>
   );
 }
+
 export default App;
