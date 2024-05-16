@@ -1,21 +1,36 @@
 import './App.css';
-import React,{useRef} from 'react'
-
+import React from 'react'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 function App() {
-let inputRef= useRef(null);
-function controlInput () {
-    //  inputRef.current.value="abc"
-  // inputRef.current.style.display="none"
-  inputRef.current.focus()
- 
-}
   return (
     <div className="App">
-      <h1>useRef in React</h1>
-      <input type='text' ref={inputRef}/>
-          <button onClick={controlInput} >Handle Input</button>
+      <Router>
+        <Link to="/home" >Home</Link>
+        <br></br>
+        <Link to="/about" >About</Link>
+        <Route path="/home" > <Home /></Route>
+        <Route path="/about" > <About /></Route>
+
+
+      </Router>
     </div>
   );
 }
 
+function Home() {
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <p>This is my Home Page</p>
+    </div>
+  )
+}
+function About() {
+  return (
+    <div>
+      <h1>About Page</h1>
+      <p>This is my About Page</p>
+    </div>
+  )
+}
 export default App;
