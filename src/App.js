@@ -1,14 +1,19 @@
 import './App.css';
-import React,{useState} from 'react'
-import User from './User'
+import React,{useRef} from 'react'
+
 function App() {
-  const [data,setData]=useState(10)
-  const [count,setCount]=useState(100)
+let inputRef= useRef(null);
+function controlInput () {
+    //  inputRef.current.value="abc"
+  // inputRef.current.style.display="none"
+  inputRef.current.focus()
+ 
+}
   return (
     <div className="App">
-      <User count={count} data={data} />
-      <button onClick={()=>setCount(count+1)} >Update Count</button>
-      <button onClick={()=>setData(data+1)} >Update Data</button>
+      <h1>useRef in React</h1>
+      <input type='text' ref={inputRef}/>
+          <button onClick={controlInput} >Handle Input</button>
     </div>
   );
 }
