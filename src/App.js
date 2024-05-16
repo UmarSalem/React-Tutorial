@@ -1,24 +1,19 @@
 import './App.css';
-import React,{useState} from 'react';
-function App (){
-  const [firstName,setfirstName]=useState("");
-  const [lastName,setlastName]=useState("");
-  const [name,setName]=useState("");
+import React,{useState,useEffect } from 'react';
 
-  function fullName() {
-    setName(firstName+""+lastName)
-  }
+function App (){
+  const [count,setCount]=useState(0);
+useEffect(()=>{console.warn("use effect")})
+
+
+  
 
   return (
     <div className='App'>
-      <h1>Hook General</h1>
-      <input type='text' firstName="firstName" value={firstName} onChange={(e)=>{setfirstName(e.target.value)}} /> <br/><br/>
-      <input type='text' lastName="lastName" value={lastName} onChange={(e)=>{setlastName(e.target.value)}} /> <br/><br/>
-      <button type="button" onClick={fullName} >Save New User</button>
-      <h2>{firstName}</h2>
-      <h2>{lastName}</h2>
-      <h2>{name}</h2>
-    </div>
+      <h1>Use Effect in React</h1>
+      <h2>{count}</h2>
+          <button type="button" onClick={()=>{setCount(count+1)}} >Update Counter</button>
+         </div>
   );
 }
 export default App;
