@@ -1,37 +1,23 @@
 import './App.css';
-import React,{useEffect,useState} from 'react';
+import React,{useState} from 'react';
 function App (){
+  const [firstName,setfirstName]=useState("");
+  const [lastName,setlastName]=useState("");
   const [name,setName]=useState("");
-  const [email,setEmail]=useState("");
-  const[mobile,setMobile]=useState("");
 
-  function saveData()
-{
-  let data={name,email,mobile}
-// console.warn(data);
-  fetch("http://localhost:4000/todo", {
-    method: "POST",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body:JSON.stringify(data)
-  }).then((resp)=>{
-    // console.warn("resp",resp);;
-    resp.json().then((result)=>{
-      console.warn("result",result)
-    })
-  })
-}
-
+  function fullName() {
+    setName(firstName+""+lastName)
+  }
 
   return (
     <div className='App'>
-      <h1>Post Api Example</h1>
-      <input type='text' name="name" value={name} onChange={(e)=>{setName(e.target.value)}} /> <br/><br/>
-      <input type="text" name="email"  value={email} onChange={(e)=>{setEmail(e.target.value)}} /> <br /> <br />
-      <input type="text" name="mobile"  value={mobile} onChange={(e)=>{setMobile(e.target.value)}}/> <br /> <br />
-      <button type="button" onClick={saveData} >Save New User</button>
+      <h1>Hook General</h1>
+      <input type='text' firstName="firstName" value={firstName} onChange={(e)=>{setfirstName(e.target.value)}} /> <br/><br/>
+      <input type='text' lastName="lastName" value={lastName} onChange={(e)=>{setlastName(e.target.value)}} /> <br/><br/>
+      <button type="button" onClick={fullName} >Save New User</button>
+      <h2>{firstName}</h2>
+      <h2>{lastName}</h2>
+      <h2>{name}</h2>
     </div>
   );
 }
